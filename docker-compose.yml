@@ -1,0 +1,22 @@
+version: '3'
+services:
+  tudu_mongodb:
+    container_name: boilerplate_mongodb
+    image: mongo:latest
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME:
+      MONGO_INITDB_ROOT_PASSWORD:
+      MONGO_INITDB_DATABASE: boilerplate
+    networks:
+      - app-network
+    volumes:
+      - mongodb-data:/data/db
+    ports:
+      - 27017:27017
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodb-data:
